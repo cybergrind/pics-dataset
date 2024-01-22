@@ -4,6 +4,9 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
+from pics_dataset.context_vars import app_config
+from pics_dataset.db_utils import get_connection_string
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -27,10 +30,7 @@ target_metadata = SQLModel.metadata
 
 
 def get_url() -> str:
-    from pics_dataset.config import config
-    from pics_dataset.models import get_connection_string
-
-    return get_connection_string(config, is_async=False)
+    return get_connection_string(app_config.get(), is_async=False)
 
 
 def run_migrations_offline() -> None:

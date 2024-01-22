@@ -8,8 +8,6 @@ from starlette_exporter import PrometheusMiddleware, handle_metrics
 
 import pics_dataset.logs  # noqa
 
-from .config import config  # noqa
-
 
 UP = Gauge('up', 'Pics Dataset Worker is up', ['app'])
 UP.labels(app='pics_dataset').set(1)
