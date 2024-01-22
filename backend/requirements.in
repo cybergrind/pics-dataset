@@ -7,12 +7,16 @@ starlette_exporter
 aioboto3
 websockets
 fan_tools[logging]~=4.2.2
+pillow
+
+sqlmodel
+databases
+sqlalchemy
+alembic
+aiosqlite
 
 pytest
 pytest-asyncio
 
 ipython
 pip-tools
-
-pytest
-pytest-asyncio

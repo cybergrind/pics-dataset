@@ -40,3 +40,9 @@ dev:
 	cd frontend/pics-dataset && pnpm run dev
 
 
+generate-migration:
+	@if [ -z "$(MESSAGE)" ]; then echo "MESSAGE is not defined"; exit 1; fi
+	./$(VENV)/bin/alembic -c backend/alembic.ini revision --autogenerate -m "$(MESSAGE)"
+
+migrate:
+	./$(VENV)/bin/alembic -c backend/alembic.ini upgrade head
