@@ -28,6 +28,7 @@
   },
   "type": "module",
   "dependencies": {
-    "pnpm": "^8.14.2"
+    "pnpm": "^8.14.2",
+    "svelte-easy-crop": "^2.0.3"
   }
 }
