@@ -6,6 +6,7 @@ from sqlmodel import SQLModel
 
 from pics_dataset.context_vars import app_config
 from pics_dataset.db_utils import get_connection_string
+from pics_dataset.models import Base  # noqa
 
 
 # this is the Alembic Config object, which provides

@@ -1,9 +1,9 @@
 import datetime
 import logging
 
-from sqlalchemy.orm import declarative_base
 import sqlalchemy as db
 from sqlalchemy import func
+from sqlalchemy.orm import declarative_base
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel.main import SQLModel
@@ -14,9 +14,9 @@ Base = declarative_base(metadata=SQLModel.metadata)
 log = logging.getLogger('models')
 
 
-class OriginalImage(Base):
-    __tablename__ = 'original_images'
+class DBBase:
     __table_args__ = {'sqlite_autoincrement': True}
+
     id = db.Column('id', db.Integer, autoincrement=True, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(
@@ -25,6 +25,11 @@ class OriginalImage(Base):
         server_onupdate=db.func.now(),
         onupdate=datetime.datetime.now(),
     )
+
+
+class OriginalImage(Base, DBBase):
+    __tablename__ = 'original_images'
+
     path = db.Column(db.String(1024), nullable=False, unique=True)
     backup_path = db.Column(db.String(1024), nullable=False, unique=True)
     height = db.Column(db.Integer, nullable=False)
@@ -33,18 +38,9 @@ class OriginalImage(Base):
     sha1_hash = db.Column(db.String(40), nullable=True, index=True)
 
 
-class Image(Base):
+class Image(Base, DBBase):
     __tablename__ = 'images'
-    __table_args__ = {'sqlite_autoincrement': True}
 
-    id = db.Column('id', db.Integer, autoincrement=True, primary_key=True)
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(
-        db.DateTime,
-        server_default=db.func.now(),
-        server_onupdate=db.func.now(),
-        onupdate=datetime.datetime.now(),
-    )
     path = db.Column(db.String(1024), nullable=False, unique=True)
     height = db.Column(db.Integer, nullable=False)
     width = db.Column(db.Integer, nullable=False)
@@ -72,3 +68,9 @@ class Image(Base):
     async def get_by_path(cls, session: AsyncSession, path: str) -> 'Image':
         return (await session.exec(select(Image).where(Image.path == path))).first()
 
+
+class Bookmark(Base, DBBase):
+    __tablename__ = 'bookmarks'
+
+    name = db.Column(db.String(1024), nullable=False, unique=True)
+    path = db.Column(db.String(1024), nullable=False, unique=True)
