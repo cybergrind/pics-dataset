@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 /.logs/
 /db.sqlite
+/backend/.logs/
+/pics/

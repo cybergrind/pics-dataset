@@ -2,8 +2,11 @@ import logging
 
 from fan_tools.fan_logging import setup_logger
 
-from .config import config
+from .context_vars import app_config
 
 
-setup_logger('pics_dataset', config.LOG_DIR)
-log = logging.getLogger('app')
+def setup_logging():
+    log_dir = app_config.get().LOG_DIR
+    log_dir.mkdir(exist_ok=True, parents=True)
+    setup_logger('pics_dataset', log_dir)
+    log = logging.getLogger('app')
