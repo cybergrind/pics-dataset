@@ -4,6 +4,9 @@ dependencies:
   pnpm:
     specifier: ^8.14.2
     version: 8.14.2
+  reconnecting-websocket:
+    specifier: ^4.4.0
+    version: 4.4.0
   svelte-easy-crop:
     specifier: ^2.0.3
     version: 2.0.3(svelte@4.2.7)
@@ -1676,6 +1679,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /reconnecting-websocket@4.4.0:
+    resolution: {integrity: sha512-D2E33ceRPga0NvTDhJmphEgJ7FUYF0v4lr1ki0csq06OdlxKfugGzN0dSkxM/NfqCxYELK4KcaTOUOjTV6Dcng==}
+    dev: false
 
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
