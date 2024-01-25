@@ -21,6 +21,11 @@
 <style>
   nav {
     display: flex;
-    padding: 1rem;
+    align-items: center;
+  }
+  nav a {
+    padding-right: 5px;
+    border-left: 1px solid #000;
+    padding-left: 5px;
   }
 </style>
